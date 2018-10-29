@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PL.Models.TestViewModel>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeForTest)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeForTest)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Test_ID }) |
+                @Html.ActionLink("Details", "Details","Tests", new { id=item.Test_ID },null) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Test_ID })
+            </td>
+        </tr>
+        }
+
+    </table>

@@ -1,0 +1,30 @@
+﻿@model PL.Models.QuestionViewModel
+
+
+
+<h2>Details</h2>
+
+
+</p>
+<h2> Ответы</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", "Answers", new { id = Model.Question_ID }, null)
+</p>
+<table class="table">
+    @foreach (var item in Model.Answers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Answers", new { id = item.Answer_ID }, null) |
+                @Html.ActionLink("Details", "Details", "Answers", new { id = item.Answer_ID }, null) |
+                @Html.ActionLink("Delete", "Delete", "Answers", new { id = item.Answer_ID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to List", "Details", "Tests", new { id = Model.Test_ID }, null)
+

@@ -1,0 +1,32 @@
+﻿@model PL.Models.AnswerViewModel
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>Answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISCorrect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISCorrect)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Answer_ID }) |
+    @Html.ActionLink("Back to List", "Details", "Questions", new { id = Model.Question_ID }, null)
+</p>

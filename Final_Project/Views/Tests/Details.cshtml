@@ -1,0 +1,31 @@
+﻿@model PL.Models.TestViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<p>
+</p>
+<h2> Вопросы</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", "Questions", new { id = Model.Test_ID}, null)
+</p>
+<table class="table">
+    @foreach (var item in Model.Questions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Questions", new { id = item.Question_ID }, new { Test_ID = Model.Test_ID }) |
+                @Html.ActionLink("Details", "Details", "Questions", new { id = item.Question_ID }, null) |
+                @Html.ActionLink("Delete", "Delete", "Questions", new { id = item.Question_ID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to List", "Index")

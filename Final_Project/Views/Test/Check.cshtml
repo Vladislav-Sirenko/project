@@ -1,0 +1,8 @@
+﻿@model PL.Models.ResultViewModel
+
+
+<h2>Your result</h2>
+<h2>@Html.DisplayFor(modelitem => Model.Test_Topic)- @Html.DisplayFor(modelitem => Model.Score)/@Html.DisplayFor(modelitem => Model.Count_of_questions)</h2>
+@Html.ActionLink("Tests List", "Index", "UserTests")
+<h2>Правильность расширенного ответа будет проверена позже</h2>
+
