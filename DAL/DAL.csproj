@@ -66,6 +66,14 @@
     <Compile Include="Interfaces\IClientManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Migrations\201811251839346_test.cs" />
+    <Compile Include="Migrations\201811251839346_test.Designer.cs">
+      <DependentUpon>201811251839346_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812281238422_today.cs" />
+    <Compile Include="Migrations\201812281238422_today.Designer.cs">
+      <DependentUpon>201812281238422_today.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientManager.cs" />
@@ -75,6 +83,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811251839346_test.resx">
+      <DependentUpon>201811251839346_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812281238422_today.resx">
+      <DependentUpon>201812281238422_today.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

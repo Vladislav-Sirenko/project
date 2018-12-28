@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessModels\CheckTest.cs" />
+    <Compile Include="BusinessModels\MemoryStreamLogger.cs" />
     <Compile Include="DTO\AnswerDTO.cs" />
     <Compile Include="DTO\QuestionDTO.cs" />
     <Compile Include="DTO\ResultDTO.cs" />

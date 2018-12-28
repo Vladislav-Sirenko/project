@@ -10,6 +10,7 @@ using AutoMapper;
 using PL.Models;
 using BLL.Interfaces;
 using Microsoft.AspNet.Identity;
+using BLL.BusinessModels;
 
 namespace Final_Project.Controllers
 {
@@ -52,7 +53,7 @@ namespace Final_Project.Controllers
         [HttpPost]
         public ActionResult Check(TestAnswerViewModel testView)
         {
-            string FullOpen;
+            string FullOpen = "";
             List<int> user_answers = new List<int>();
             foreach (var k in testView.Questions)
             {
@@ -63,6 +64,10 @@ namespace Final_Project.Controllers
             {
                 if (question.FullOpen != null)
                     FullOpen = question.FullOpen;
+            }
+            using (MemoryStreamLogger logger = new MemoryStreamLogger(testView.Topic + "_" + User.Identity.Name + "_" + DateTime.Now.Date))
+            {
+                    logger.Log(FullOpen);
             }
             var result = TestCheckingService.GetScore(testView.Test_ID, User_ID, user_answers);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ResultDTO, ResultViewModel>()).CreateMapper();
