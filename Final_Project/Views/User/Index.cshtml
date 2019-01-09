@@ -1,14 +1,6 @@
 ﻿@model IEnumerable<BLL.DTO.UserDTO>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -22,17 +14,21 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Статистика", "IndexAdmin", "Tests", new { User_id = item.Id }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Удалить ", "Delete", new { id = item.Id }, null)
+        </td>
+
+    </tr>
     }
 
 </table>

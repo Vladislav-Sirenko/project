@@ -53,6 +53,10 @@ namespace BLL.Services
             testDTO.Questions = QuestionsDTO.ToList();
             return (testDTO);
         }
+        public int GetTestByName(string name)
+        {
+            return Database.Tests.GetAll().Where(test => test.Topic == name).Select(id => id.Test_ID).First();
+        }
         public void DeleteTest(int? id)
         {
             Database.Tests.Delete(id);

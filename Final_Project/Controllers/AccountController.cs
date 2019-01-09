@@ -80,8 +80,19 @@ namespace UserStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
         {
+            string error = "Такой пользователь уже существует";
             await SetInitialDataAsync();
-            if (ModelState.IsValid)
+            bool exist = false;
+            var users = UserService.GetUsers();
+            foreach(var user in users)
+            {
+                if(user.Email == model.Email)
+                {
+                    exist = true;
+                }
+            }
+            
+            if (ModelState.IsValid && !exist)
             {
                 UserDTO userDto = new UserDTO
                 {
@@ -97,6 +108,7 @@ namespace UserStore.Controllers
                 else
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
+            ViewBag.error = error;
             return View(model);
         }
         private async Task SetInitialDataAsync()

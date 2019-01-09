@@ -193,9 +193,11 @@
     <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
@@ -211,6 +213,7 @@
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\PagingHelpers.cs" />
     <Compile Include="Util\TestModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -846,11 +849,20 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\UserTests\Check.cshtml" />
+    <Content Include="Views\UserTests\ResultAdmin.cshtml" />
+    <Content Include="Views\Tests\IndexAdmin.cshtml" />
+    <Content Include="Views\Tests\TestSearch.cshtml" />
+    <Content Include="Views\UserTests\TestSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{1420f446-f24d-48f6-aca6-38d918436391}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{FEFD1154-8709-4B0A-99C5-66393D972EAA}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

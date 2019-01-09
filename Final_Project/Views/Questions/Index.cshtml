@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<PL.Models.AnswerViewModel>
 
 
-
-    <h2>Index</h2>
-
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Создать вопрос", "Create")
 
 
         @foreach (var item in Model) {
@@ -15,9 +12,9 @@
                 @Html.DisplayFor(modelItem => item.content)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit"/* new { id = item.Question_ID }*/) |
-                @Html.ActionLink("Details", "Details","Questions"/* new { id = item.Question_ID }*/) |
-                @Html.ActionLink("Delete", "Delete"/*, new { id = item.Question_ID }*/)
+                @Html.ActionLink("Редактировать", "Edit"/* new { id = item.Question_ID }*/) |
+                @Html.ActionLink("Ответы", "Details","Questions"/* new { id = item.Question_ID }*/) |
+                @Html.ActionLink("Удалить", "Delete"/*, new { id = item.Question_ID }*/)
             </td>
         </tr>
         }

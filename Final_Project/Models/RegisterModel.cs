@@ -5,6 +5,7 @@ namespace PL.Models
     public class RegisterModel
     {
         [Required]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail не действителен")]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]

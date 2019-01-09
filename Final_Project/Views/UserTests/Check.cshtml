@@ -1,0 +1,7 @@
+﻿@model  PL.Models.ResultViewModel
+<h2>Проверить</h2>
+<form>
+    @Html.TextAreaFor(m => m.FullOpenAnswer, new { @class = "form-control" })
+</form>
+@Html.ActionLink("Правильно", "CheckFull", new { Test_Id = Model.Test_ID, User_ID = Model.User_ID, Date = Model.Date })
+@Html.ActionLink("Не правильно", "ResultAdmin", new { Test_Id = Model.Test_ID, User_ID = Model.User_ID, Date = Model.Date })

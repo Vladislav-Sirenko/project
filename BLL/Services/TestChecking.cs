@@ -20,9 +20,10 @@ namespace BLL.Services
             Database = uow;
             testService = testServ;
         }
-        public ResultDTO GetScore(int Test_ID, string User_ID, List<int> user_answers)
+        public ResultDTO GetScore(int Test_ID, string User_ID, List<int> user_answers,string FullOpen)
         {
             ResultDTO resultDTO = new ResultDTO();
+            resultDTO.FullOpenAnswer = FullOpen;
             List<Answer> answers = new List<Answer>();
             TestDTO testDTO = testService.GetTest(Test_ID);
             List<int> true_list = new List<int>();

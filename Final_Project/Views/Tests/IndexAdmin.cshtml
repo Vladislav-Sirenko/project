@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PL.Models.TestViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            Тема
+        </th>
+        <th>
+            Время прохождения
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeForTest)
+            </td>
+            <td>
+                @Html.ActionLink("Выбрать этот", "ResultAdmin","UserTests", new { Test_id = item.Test_ID , User_id=item.User_id },null) 
+            </td>
+        </tr>
+    }
+
+</table>

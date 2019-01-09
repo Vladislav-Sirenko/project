@@ -35,8 +35,10 @@ namespace Final_Project.Controllers
             };
             testView.Questions = new List<QuestionAnswerViewModel>();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AnswerDTO, AnswerViewModel>()).CreateMapper();
+            var lastQuestion = new QuestionAnswerViewModel();
             foreach (var quest in testDTO.Questions)
             {
+                
                 QuestionAnswerViewModel qvm = new QuestionAnswerViewModel
                 {
                     Question_ID = quest.Question_ID,
@@ -45,15 +47,20 @@ namespace Final_Project.Controllers
                     ISFULL = quest.ISFULL,
                     FullOpen = quest.FullOpen
                 };
-                testView.Questions.Add(qvm);
-                qvm.Answers = mapper.Map<IEnumerable<AnswerDTO>, List<AnswerViewModel>>(quest.Answers);
+                if (!qvm.ISFULL)
+                {
+                    testView.Questions.Add(qvm);
+                    qvm.Answers = mapper.Map<IEnumerable<AnswerDTO>, List<AnswerViewModel>>(quest.Answers);
+                }
+                else { lastQuestion = qvm; }
             }
+            testView.Questions.Add(lastQuestion); 
             return View(testView);
         }
         [HttpPost]
         public ActionResult Check(TestAnswerViewModel testView)
         {
-            string FullOpen = "";
+            var FullOpen = "";
             List<int> user_answers = new List<int>();
             foreach (var k in testView.Questions)
             {
@@ -65,11 +72,11 @@ namespace Final_Project.Controllers
                 if (question.FullOpen != null)
                     FullOpen = question.FullOpen;
             }
-            using (MemoryStreamLogger logger = new MemoryStreamLogger(testView.Topic + "_" + User.Identity.Name + "_" + DateTime.Now.Date))
-            {
-                    logger.Log(FullOpen);
-            }
-            var result = TestCheckingService.GetScore(testView.Test_ID, User_ID, user_answers);
+            //using (MemoryStreamLogger logger = new MemoryStreamLogger(testView.Topic + "_" + User.Identity.Name + "_" + DateTime.Now.Date))
+            //{
+            //        logger.Log(FullOpen);
+            //}
+            var result = TestCheckingService.GetScore(testView.Test_ID, User_ID, user_answers,FullOpen);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ResultDTO, ResultViewModel>()).CreateMapper();
             ResultViewModel resultView = mapper.Map<ResultDTO, ResultViewModel>(result);
             resultView.Test_Topic = testView.Topic;

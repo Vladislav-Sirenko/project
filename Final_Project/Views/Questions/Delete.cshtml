@@ -1,11 +1,7 @@
 ﻿@model PL.Models.QuestionViewModel
 
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Вы действительно хотите удалить вопрос?</h3>
 <div>
-    <h4>Question</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,8 +20,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Details", "Tests", new { id = Model.Test_ID }, null)
+        <input type="submit" value="Удалить" class="btn btn-default" /> |
+        @Html.ActionLink("Вернуться к списку вопросов", "Details", "Tests", new { id = Model.Test_ID }, null)
     </div>
     }
 </div>

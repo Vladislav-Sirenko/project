@@ -68,8 +68,8 @@ namespace Final_Project.Controllers
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AnswerViewModel, AnswerDTO>()).CreateMapper();
                 AnswerDTO answerDTO = mapper.Map<AnswerViewModel, AnswerDTO>(answer);
                 // answerDTO.Question_ID = id.Value;
-                AnswerService.CreateAnswer(answerDTO);
-                return RedirectToAction("Details", "Questions", new { id = answer.Question_ID });
+                int Answer_ID = AnswerService.CreateAnswer(answerDTO);
+                return RedirectToAction("Details","Questions", new { id = answer.Question_ID});
 
 
             }
@@ -107,7 +107,7 @@ namespace Final_Project.Controllers
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AnswerViewModel, AnswerDTO>()).CreateMapper();
                 AnswerDTO answerDTO = mapper.Map<AnswerViewModel, AnswerDTO>(answer);
                 AnswerService.EditAnswer(answerDTO);
-                return RedirectToAction("Details", "Questions", new { id = answer.Question_ID });
+                return RedirectToAction("Details","Questions", new { id = answer.Question_ID });
             }
             // ViewBag.Question_ID = new SelectList(QuestionService.GetQuestions(), "Question_ID", "content");
             return View(answer);

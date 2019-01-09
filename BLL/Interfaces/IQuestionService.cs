@@ -10,7 +10,7 @@ namespace BLL.Interfaces
    public interface IQuestionService
     {
         IEnumerable<QuestionDTO> GetQuestions(int? id);
-        void CreateQuestion(QuestionDTO questionDTO);
+        int CreateQuestion(QuestionDTO questionDTO);
         void EditQuestion(QuestionDTO questionDTO);
          QuestionDTO GetQuestion(int? id);
         void DeleteQuestion(int? id);

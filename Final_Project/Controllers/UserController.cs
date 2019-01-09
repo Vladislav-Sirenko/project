@@ -54,5 +54,10 @@ namespace Final_Project.Controllers
             UserService.DeleteUser(id);
             return RedirectToAction("Index");
         }
+
+        //public ActionResult Check(string id)
+        //{
+        //    return RedirectToAction("Results","");
+        //}
     }
 }

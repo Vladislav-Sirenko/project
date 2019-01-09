@@ -16,11 +16,13 @@ namespace Final_Project.Controllers
 {
     public class QuestionsController : Controller
     {
+        ITestForming TestForming;
         IQuestionService QuestionService;
-        public QuestionsController(IQuestionService QuestionServ)
+        public QuestionsController(IQuestionService QuestionServ,ITestForming testServ)
         {
 
             QuestionService = QuestionServ;
+            TestForming = testServ;
 
 
 
@@ -45,9 +47,9 @@ namespace Final_Project.Controllers
         }
 
         // GET: Questions/Create
-        public ActionResult Create()
+        public ActionResult Create(string error)
         {
-
+            ViewBag.error = error;
             return View();
         }
 
@@ -60,12 +62,26 @@ namespace Final_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                string error = "This test already has full question";
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<QuestionViewModel, QuestionDTO>()).CreateMapper();
                 QuestionDTO questionDTO = mapper.Map<QuestionViewModel, QuestionDTO>(question);
-                questionDTO.Test_ID = id.Value;
-               // questionDTO.ISFULL = question.ISFULL;
-                QuestionService.CreateQuestion(questionDTO);
-                return RedirectToAction("Details", "Tests", new { id = questionDTO.Test_ID });
+                
+                var fullquestion = TestForming.GetTest(id.Value).Questions;
+                foreach(var ques in fullquestion)
+                {
+                    if (ques.ISFULL && question.ISFULL)
+                    {
+                       return RedirectToAction("Create",new { error });
+                    }
+                }
+                questionDTO.Test_ID = id.Value; 
+                // questionDTO.ISFULL = question.ISFULL;
+                int Question_ID =  QuestionService.CreateQuestion(questionDTO);
+                if (question.ISFULL)
+                {
+                    return RedirectToAction("Details", "Tests", new { id = id.Value });
+                }
+                return RedirectToAction("Details",new { id = Question_ID });
             }
             return View(question);
         }

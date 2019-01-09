@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-  public  interface ITestService
+    public interface ITestService
     {
-       IEnumerable<TestDTO> GetTests();
+        IEnumerable<TestDTO> GetTests();
         void CreateTest(TestDTO testDTO);
         void EditTest(TestDTO testDTO);
         TestDTO GetTest(int? id);
         void DeleteTest(int? id);
+        int GetTestByName(string name);
         void Dispose();
     }
 }

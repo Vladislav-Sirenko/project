@@ -10,7 +10,7 @@ namespace BLL.Interfaces
     public interface IAnswerService
     {
         IEnumerable<AnswerDTO> GetAnswersForQuestion(int? id);
-        void CreateAnswer(AnswerDTO answerDTO);
+        int CreateAnswer(AnswerDTO answerDTO);
         void EditAnswer(AnswerDTO answerDTO);
         AnswerDTO GetAnswer(int? id);
         void DeleteAnswer(int? id);

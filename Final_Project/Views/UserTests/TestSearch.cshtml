@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PL.Models.TestViewModel>
+<div style="padding-top: 3%">
+    @using (Ajax.BeginForm("TestSearch", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Поиск" />
+    }
+    <div id="results"></div>
+    @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeForTest)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeForTest)
+            </td>
+            <td>
+                @Html.ActionLink("Начать", "Index", "Test", new { id = item.Test_ID }, null) |
+                @Html.ActionLink("Статистика", "Result", new { Test_id = item.Test_ID }, null)
+            </td>
+        </tr>
+    }
+
+
+</table>
+
+@Html.ActionLink("Вернуться к первой странице", "Index")

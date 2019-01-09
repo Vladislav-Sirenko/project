@@ -9,7 +9,7 @@ namespace BLL.Interfaces
 {
     public interface ITestChecking
     {
-        ResultDTO GetScore(int Test_ID, string User_ID, List<int> user_answers);
+        ResultDTO GetScore(int Test_ID, string User_ID, List<int> user_answers, string FullOpen);
         void Dispose();
     }
 }

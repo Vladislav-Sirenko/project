@@ -1,16 +1,27 @@
-﻿@model IEnumerable<PL.Models.TestViewModel>
+﻿@model PL.Models.IndexViewModel
+@using Final_Project.Util
+<div style="padding-top: 3%">
+    @using (Ajax.BeginForm("TestSearch", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <input type="text" name="name" />
+        <input type="submit" value="Поиск" />
+    }
+    <div id="results"></div>
+    @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Topic)
+            Тема
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeForTest)
+            Время на прохождения
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Tests)
     {
         <tr>
             <td>
@@ -20,8 +31,8 @@
                 @Html.DisplayFor(modelItem => item.TimeForTest)
             </td>
             <td>
-                @Html.ActionLink("Start", "Index", "Test", new { id = item.Test_ID }, null) |
-                @Html.ActionLink("Statistic", "Result", new { Test_id = item.Test_ID }, null)
+                @Html.ActionLink("Начать", "Index", "Test", new { id = item.Test_ID }, null) |
+                @Html.ActionLink("Статистика", "Result", new { Test_id = item.Test_ID }, null)
             </td>
         </tr>
     }
@@ -29,3 +40,7 @@
 </table>
 
 
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

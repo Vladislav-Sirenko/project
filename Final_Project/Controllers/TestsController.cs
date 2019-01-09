@@ -10,10 +10,12 @@ using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
 using BLL.Services;
+using Final_Project.Models;
 using PL.Models;
 
 namespace Final_Project.Controllers
 {
+
     public class TestsController : Controller
     {
         ITestService TestService;
@@ -22,17 +24,53 @@ namespace Final_Project.Controllers
             TestService = Testserv;
         }
 
-        
-        // GET: Tests
-        public ActionResult Index()
+        [HttpPost]
+        public ActionResult TestSearch(string name)
         {
+            IEnumerable<TestDTO> testDTO = TestService.GetTests();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TestDTO, TestViewModel>()).CreateMapper();
+            IEnumerable<TestViewModel> testView = mapper.Map<IEnumerable<TestDTO>, IEnumerable<TestViewModel>>(testDTO);
+            var allbooks = testView.Where(a => a.Topic.Contains(name)).ToList();
+
+            if (allbooks.Count() <= 0)
+            {
+                return HttpNotFound();
+            }
+            return View(allbooks);
+        }
+
+
+        // GET: Tests
+        public ActionResult Index(int page = 1)
+        {
+            int pageSize = 20;
             if (User.IsInRole("admin")){
+
                 IEnumerable<TestDTO> testDTO = TestService.GetTests();
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TestDTO, TestViewModel>()).CreateMapper();
                 IEnumerable<TestViewModel> testView = mapper.Map<IEnumerable<TestDTO>, IEnumerable<TestViewModel>>(testDTO);
-                return View(testView);
+                IEnumerable<TestViewModel> testsPerPages = testView.Skip((page - 1) * pageSize).Take(pageSize);
+                PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = testView.Count() };
+                IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Tests = testsPerPages };
+                return View(ivm);
             }
             else return RedirectToAction("Index","UserTests");
+        }
+
+        public ActionResult IndexAdmin(string User_id)
+        {
+            if (User.IsInRole("admin"))
+            {
+                IEnumerable<TestDTO> testDTO = TestService.GetTests();
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TestDTO, TestViewModel>()).CreateMapper();
+                IEnumerable<TestViewModel> testView = mapper.Map<IEnumerable<TestDTO>, IEnumerable<TestViewModel>>(testDTO);
+                foreach(var test in testView)
+                {
+                    test.User_id = User_id;
+                }
+                return View(testView);
+            }
+            else return RedirectToAction("Index", "UserTests");
         }
 
         // GET: Tests/Details/5
@@ -69,7 +107,8 @@ namespace Final_Project.Controllers
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TestViewModel, TestDTO>()).CreateMapper();
                 TestDTO testDTO = mapper.Map<TestViewModel, TestDTO>(test);
                 TestService.CreateTest(testDTO);
-                return RedirectToAction("Index");
+                int id = TestService.GetTestByName(testDTO.Topic);
+                return RedirectToAction("Details",new { ID = id});
             }
 
             return View(test);

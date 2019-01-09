@@ -57,7 +57,6 @@ C:\Users\Vlad\Desktop\shtogrina\project\DAL\bin\Debug\EntityFramework.xml
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.dll
@@ -65,3 +64,6 @@ C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.pdb
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.Migrations.test.resources
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.csproj.GenerateResource.cache
 C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.Migrations.today.resources
+C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.Migrations.FullOpenResult.resources
+C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Vlad\Desktop\shtogrina\project\DAL\obj\Debug\DAL.Migrations.Added_checkfullopen.resources

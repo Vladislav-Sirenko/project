@@ -35,11 +35,12 @@ namespace BLL.Services
             var QuestionsDTO = mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDTO>>(Questions);
             return QuestionsDTO;
         }
-        public void CreateQuestion(QuestionDTO questionDTO)
+        public int CreateQuestion(QuestionDTO questionDTO)
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<QuestionDTO, Question>()).CreateMapper();
             Question question = mapper.Map<QuestionDTO, Question>(questionDTO);
             Database.Questions.Create(question);
+            return question.Question_ID;
         }
         public void EditQuestion(QuestionDTO questionDTO)
         {

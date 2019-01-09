@@ -12,5 +12,7 @@ namespace DAL.Entities
         public string  User_ID { get; set; }
         public DateTime Date { get; set; }
         public int Score { get; set; }
+        public string FullOpenAnswer { get; set; }
+        public bool IsFullOpenChecked { get; set; }
     }
 }
